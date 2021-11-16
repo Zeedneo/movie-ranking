@@ -1,18 +1,15 @@
 from flask import Flask, request
-
+import json
 import requests
 app = Flask(__name__)
 
 @app.route('/search', methods=['POST'])
 def search_movie():
-    myName = request.args.get("patient_room")
-    return f'search {myName}'
-
-@app.route('/')
-def hello_world():
+    result = {}
+    content = request.get_json()
     url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
 
-    querystring = {"s":"witcher","r":"json"}
+    querystring = {"s":content["search"],"r":"json"}
 
     headers = {
     'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
@@ -20,10 +17,18 @@ def hello_world():
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
+    response = json.loads(response.text)
+    if response["Response"]=="False":
+        return {"status":"False","Error":"Please fill search parameter"}
+        
+    result["totalPages"] =  -(int(response["totalResults"])// -10 )
+    result["search"] = response["Search"]
+    result["status"] = "True"
+    return result
 
-    # print(response.text)
-    return response.text
-    # return 'Hello, World!'
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='4000',debug=True)
