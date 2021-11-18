@@ -7,19 +7,21 @@ import Home from './components/pages/home/home';
 import Link from './components/pages/link/link';
 import Login from './components/pages/login/login';
 import Register from './components/pages/register/register';
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
   };
 
+ 
 
   return (
     <div>
-      <NavBar 
+      <NavBar
         term={searchTerm}
         SearchKeyword={searchHandler}
       />
@@ -27,11 +29,13 @@ function App() {
       <br />
       <br />
       <Routes>
-        <Route path="/" element={<Default searchKey={searchTerm}/>} />
+        <Route path="/:searchURLword" element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/link" element={<Link />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/" exact element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} />} />
+
       </Routes>
     </div>
   );

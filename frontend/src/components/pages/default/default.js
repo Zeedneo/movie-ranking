@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Default(props) {
 
     const [data, setData] = useState([]);
+    let { searchURLword } = useParams();
+    const navigate = useNavigate();
 
-    axios.post('http://05ba-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ap.ngrok.io/search', { "search": props.searchKey })
-        .then(function (response) {
-            console.log(response.data.search);
-            console.log(response.data.totalPages);
-            setData(response.data.search);
-        })
+    const searchFuntion = async (key) => {
+         await axios.post('http://05ba-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ap.ngrok.io/search', { "search": key })
+            .then(function (response) {
+                // console.log(response.data.search);
+                // console.log(response.data.totalPages);
+                setData(response.data.search);
+            });
+    }
+
+
+    useEffect(() => {
+        console.log("key "+props.searchKey);
+        if (props.searchKey !=""){
+            searchFuntion(props.searchKey);
+        }
+        else{
+            props.SearchKeyword(searchURLword);
+            searchFuntion(searchURLword);
+        }
+    }, [props.searchKey]);
 
     return (
         <div className="container">
