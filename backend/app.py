@@ -4,7 +4,7 @@ from flask_pymongo import PyMongo
 import json
 import requests
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/movie'
 mongo = PyMongo(app)
 
@@ -33,11 +33,13 @@ def search_movie():
     return result
 
 
-@app.route('/create', methods=['POST'])
+@app.route('/register', methods=['POST'])
 @cross_origin()
 def createUser():
     myCollection = mongo.db.user
     content = request.get_json()
+    if content == None or "username" not in content or "password" not in content:
+        return {"status":"please fill username and password","Response":"False","ที่ส่งมา":content}
     myInsert = {
         "name": content["username"],
         "password": content["password"]
@@ -45,14 +47,18 @@ def createUser():
     try:
         myCollection.insert_one(myInsert)
     except Exception as e:
-        return {"status":"Create fail maybe Duplicate username"}
-    return {"status": "Create succesfully"}
+        return {"status":"Create fail maybe Duplicate username","Response":"False"}
+    return {"status": "Create succesfully","Response":"True"}
+
 
 @app.route('/login', methods=['POST'])
 @cross_origin()
-def test():
+def login():
     myCollection = mongo.db.user
     content = request.get_json()
+    if content == None or "username" not in content or "password" not in content:
+        print(content)
+        return {"Response":"False","status":"please fill username and password","ที่ส่งมา":content}
     myInsert = {
         "name": content["username"],
         "password": content["password"]
@@ -64,8 +70,8 @@ def test():
             "name": ele["name"],
         })
     if len(output) == 0:
-        return {"status": "Login Failed"}
-    return {"status": "Login Success"}
+        return {"Response":"False","status": "Login Failed"}
+    return {"status": "Login Success","Response":"True","username":content["username"]}
 
 @app.route('/')
 @cross_origin()
