@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function Default(props) {
-
     const [data, setData] = useState([]);
     let { searchURLword } = useParams();
     const navigate = useNavigate();

@@ -47,6 +47,7 @@ function NavBar(props) {
                             onChange={event => {
                                 props.SearchKeyword(event.target.value);
                                 navigate(`../${event.target.value}`, { replace: false })
+                                
                             }}
                         />
                     </form>
