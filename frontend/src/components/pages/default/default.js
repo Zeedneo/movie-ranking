@@ -5,7 +5,7 @@ function Default(props) {
 
     const [data, setData] = useState([]);
 
-    axios.post('http://466e-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ngrok.io/search', { "search": props.searchKey })
+    axios.post('http://05ba-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ap.ngrok.io/search', { "search": props.searchKey })
         .then(function (response) {
             console.log(response.data.search);
             console.log(response.data.totalPages);

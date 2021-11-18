@@ -5,6 +5,8 @@ import NavBar from './components/navbar/navBar';
 import Default from './components/pages/default/default';
 import Home from './components/pages/home/home';
 import Link from './components/pages/link/link';
+import Login from './components/pages/login/login';
+import Register from './components/pages/register/register';
 import React , { useState } from 'react';
 
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/" element={<Default searchKey={searchTerm}/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/link" element={<Link />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
