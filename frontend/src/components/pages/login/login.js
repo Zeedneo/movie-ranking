@@ -1,9 +1,11 @@
 import login from '../login/login.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
-function Login() {
+function Login(props) {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -11,13 +13,18 @@ function Login() {
         // console.log(username);
         // console.log(password);
 
-        axios.post('http://05ba-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ap.ngrok.io/login', {
+        axios.post('http://8519-2001-fb1-1-7553-8d7a-5524-b668-6165.ap.ngrok.io/login', {
             username: username , password: password
         })
             .then (function (response) {
-                console.log(response.data.Response);
-                console.log(response.data.status);
-                console.log(response.data.username);
+                // console.log(response.data.Response);
+                // console.log(response.data.status);
+                // console.log(response.data.username);
+
+                if (response.data.Response === "True") {
+                    props.user(response.data.username);
+                    navigate(`../`, { replace: false })
+                }
             })
     }
 

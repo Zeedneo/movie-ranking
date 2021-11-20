@@ -1,23 +1,30 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 
 function Register() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
 
 
     function SubmitRegister() {
-        console.log("กดแล้ว");
+        // console.log("กดแล้ว");
 
         if (password === rePassword) {
-            axios.post('http://05ba-2001-fb1-1-5392-3509-e6e4-83a4-ca4b.ap.ngrok.io/register', {
+            axios.post('http://8519-2001-fb1-1-7553-8d7a-5524-b668-6165.ap.ngrok.io/register', {
                 username: username, password: password
             })
                 .then(function (response) {
                     console.log(response.data.Response);
                     console.log(response.data.status);
+
+                    if (response.data.Response === "True") {
+                        navigate(`../login`, { replace: false })
+                    }
                 })
         }
         else {

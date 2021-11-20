@@ -16,12 +16,17 @@ function NavBar(props) {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/favorites">
+                                Favorites
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/login">
                                 Login
                                 {/* <a className="nav-link active" aria-current="page" >Login</a> */}
                             </Link>
                         </li>
-                        <li className="nav-item">   
+                        <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/home">
                                 Home
                             </Link>
@@ -47,7 +52,7 @@ function NavBar(props) {
                             onChange={event => {
                                 props.SearchKeyword(event.target.value);
                                 navigate(`../${event.target.value}`, { replace: false })
-                                
+
                             }}
                         />
                     </form>
