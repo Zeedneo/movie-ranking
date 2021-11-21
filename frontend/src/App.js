@@ -40,13 +40,13 @@ function App() {
       <br />
       <br />
       <Routes>
-        <Route path="/:searchURLword" element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} Fav_id={Favorite}/>} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/link" element={<Link />} />
+        <Route path="/:searchURLword" element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} Username={name} Fav_id={Favorite}/>} />
         <Route path="/login" element={<Login user={user}/>} />
         <Route path="/favorites" element={<Favorites Username={name}/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" exact element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} Fav_id={Favorite}/>} />
+        <Route path="/" exact element={<Default key={searchTerm} searchKey={searchTerm} SearchKeyword={searchHandler} Username={name} Fav_id={Favorite}/>} />
+        {/* <Route path="/home" element={<Home />} />
+        <Route path="/link" element={<Link />} /> */}
 
       </Routes>
     </div>

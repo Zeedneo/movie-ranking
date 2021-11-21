@@ -11,17 +11,24 @@ function Default(props) {
     const navigate = useNavigate();
 
     const searchFuntion = async (key) => {
-        await axios.post('http://8519-2001-fb1-1-7553-8d7a-5524-b668-6165.ap.ngrok.io/search', { "search": key })
+        await axios.post('http://3c2b-2001-fb1-0-703d-508-57c7-d135-65a1.ap.ngrok.io/search', { "search": key })
             .then(function (response) {
-                // console.log(response.data.search);
+                console.log(response.data.search);
                 // console.log(response.data.totalPages);
                 setData(response.data.search);
             });
     }
 
-    // function AddToFav(value) {
-    //     props.Fav_id(value);
-    // }
+    const AddToFav = async (value) => {
+        await axios.post('http://3c2b-2001-fb1-0-703d-508-57c7-d135-65a1.ap.ngrok.io/add2Favorite', {
+            username: props.Username, movieID: value
+        })
+            .then(function (response) {
+                console.log(response.data.Response);
+                console.log(response.data.status);
+            })
+        // props.Fav_id(value);
+    }
 
 
     useEffect(() => {
@@ -34,6 +41,7 @@ function Default(props) {
             searchFuntion(searchURLword);
         }
     }, [props.searchKey]);
+
 
     return (
         <div className="container">
@@ -50,8 +58,8 @@ function Default(props) {
                                 type="button"
                                 classname="card-buttonFav"
                                 id="buttonFav"
-                                // onClick={AddToFav(val.imdbID)}
-                                onClick={console.log("กดใจ")}
+                                onClick={() => { AddToFav(val.imdbID) }}
+                            // onClick={console.log("กดใจ")}
                             > <RiHeartAddLine /> </button>
                         </div>
                     </div>
