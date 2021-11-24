@@ -1,5 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Harmattan&family=Spectral+SC:wght@200&display=swap');
+
 .c-body {
     width: 18rem;
+}
+
+.buttonInfo {
+    position:relative;
+    margin-bottom: 5px;
+}
+
+#buttonInfo {
+    margin-right: 3em;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    position:absolute;
+    right: 0;
+    background-color: rgb(192, 193, 255);
+    color: white;
+    border: transparent;
+}
+
+#buttonInfo:hover {
+    background-color: rgb(140, 112, 216);
+    color: white;
 }
 
 .buttonFavLine {
@@ -23,4 +48,43 @@
 #buttonFav:hover {
     background-color: palevioletred;
     color: white;
+}
+
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    flex: auto;
+    font-family: 'Harmattan', sans-serif;
+    font-family: 'Spectral SC', serif;
+}
+
+.card {
+    width: 16rem;
+    margin: 50px 40px;
+    padding-bottom: 1.75rem;
+    background-color: rgba(230, 230, 230, 0.61);
+    border: 2px solid;
+    border-color: transparent;
+}
+
+.card-img-top {
+    margin-bottom: 0.75em;
+}
+
+.card:hover {
+    width: 18rem;
+}
+
+.card-title {
+    font-size: 100px;
+}
+
+.last-line {
+    display: inline;
+    padding-left: 10rem;
+    padding-right: 10rem;
 }

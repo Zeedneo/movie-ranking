@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Harmattan&family=Spectral+SC:wght@300;500&family=Zen+Loop&display=swap');
+
+.c-body {
+    width: 18rem;
+}
+
+
+.myFavAndType {
+    text-align: center;
+    margin-top: 45px;
+    /* padding-bottom: 2rem */
+}
+
+.header {
+    display: inline-block;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Spectral SC', serif;
+    padding-right: 0.5em;
+    text-align: center;
+}
+
+
+#buttonInfo {
+    margin-right: 3em;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    position:absolute;
+    right: 0;
+    background-color: rgb(192, 193, 255);
+    color: white;
+    border: transparent;
+}
+
+#buttonInfo:hover {
+    background-color: rgb(140, 112, 216);
+    color: white;
+}
+
+#buttonUnFav {
+    margin-right: 1em;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    position:absolute;
+    right: 0;
+    background-color: rgb(252, 204, 150);
+    color: white;
+    border: transparent;
+}
+
+#buttonUnFav:hover {
+    background-color: rgb(231, 166, 80);
+    color: white;
+}
+
+.btn-fav {
+    background-color: #8FCFD1;
+    border-color: #8FCFD1;
+}
+
+.btn-fav:hover {
+    background-color: #4e9b9e;
+    border-color: #4e9b9e;
+    color: white;
+}
+
+.btn-fav:focus {
+    background-color: #4e9b9e;
+    border-color: #4e9b9e;
+    color: white;
+}
