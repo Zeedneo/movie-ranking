@@ -15,12 +15,12 @@ function Register() {
         // console.log("กดแล้ว");
 
         if (password === rePassword) {
-            axios.post('http://3c2b-2001-fb1-0-703d-508-57c7-d135-65a1.ap.ngrok.io/register', {
+            axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/register', {
                 username: username, password: password
             })
                 .then(function (response) {
-                    console.log(response.data.Response);
-                    console.log(response.data.status);
+                    // console.log(response.data.Response);
+                    // console.log(response.data.status);
 
                     if (response.data.Response === "True") {
                         navigate(`../login`, { replace: false })
@@ -28,7 +28,7 @@ function Register() {
                 })
         }
         else {
-            console.log("password!=rePassword");
+            // console.log("password!=rePassword");
         }
     }
 
