@@ -5,6 +5,7 @@ import { BiBookHeart } from "react-icons/bi";
 import { ImInfo } from "react-icons/im";
 import { FaHeartBroken } from "react-icons/fa";
 import favorites from "../favorites/favorites.css"
+import url from "../../url_file";
 
 
 function Favorites(props) {
@@ -16,7 +17,7 @@ function Favorites(props) {
 
 
     const removeFavorite = async (value) => {
-        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/removeFavorite', {
+        await axios.post(url+'removeFavorite', {
             username: props.Username, movieID: value
         })
             .then(function (response) {
@@ -29,7 +30,7 @@ function Favorites(props) {
 
 
     useEffect(() => {
-        axios.post('http://f07e-223-24-92-42.ap.ngrok.io/showFavorite', {
+        axios.post(url+'showFavorite', {
             username: props.Username, type: type
         })
             .then(function (response) {

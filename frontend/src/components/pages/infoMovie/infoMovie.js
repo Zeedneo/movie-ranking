@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { TiArrowBackOutline } from "react-icons/ti";
 import infoMovie from '../infoMovie/infoMovie.css'
+import url from "../../url_file";
 
 function InfoMovie(props) {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ function InfoMovie(props) {
     }
 
     useEffect(() => {
-        axios.post('http://f07e-223-24-92-42.ap.ngrok.io/getInfo', {
+        axios.post(url+'getInfo', {
             movieID: props.ID
         })
             .then(function (response) {

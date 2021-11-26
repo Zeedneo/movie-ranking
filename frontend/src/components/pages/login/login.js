@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'bootstrap';
+import url from '../../url_file';
 
 
 function Login(props) {
@@ -15,7 +16,7 @@ function Login(props) {
         // console.log(username);
         // console.log(password);
 
-        axios.post('http://f07e-223-24-92-42.ap.ngrok.io/login', {
+        axios.post(url+'login', {
             username: username, password: password
         })
             .then(function (response) {

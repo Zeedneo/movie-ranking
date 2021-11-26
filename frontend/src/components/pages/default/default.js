@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { RiHeartAddLine } from 'react-icons/ri';
 import { ImInfo } from "react-icons/im";
 import defaults from '../default/default.css';
+import url from '../../url_file';
 
 
 function Default(props) {
@@ -13,7 +14,7 @@ function Default(props) {
 
 
     const searchFuntion = async (key) => {
-        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/search', {
+        await axios.post(url+'search', {
             search: key, page: props.page, type: props.typeMovie
         })
             .then(function (response) {
@@ -25,7 +26,7 @@ function Default(props) {
     }
 
     const AddToFav = async (value) => {
-        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/add2Favorite', {
+        await axios.post(url+'add2Favorite', {
             username: props.Username, movieID: value
         })
             .then(function (response) {

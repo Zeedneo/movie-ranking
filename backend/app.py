@@ -79,11 +79,6 @@ def search_movie2():
         min_page = ( i_min )//10 + 1
     if "type" in content:
         filType = content["type"]
-    # url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
-    # headers = {
-    #     'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
-    #     'x-rapidapi-key': "597636a391msh9897a4405dd30c5p1531d6jsnf1680b5c1fd8"
-    # }
     res = []
 
     if min_page == max_page:
@@ -246,6 +241,8 @@ def get_info():
     countMovie = myCollection.count_documents(movieFlt)
     if countMovie:
         query = myCollection.find_one(movieFlt)
+        return {"result":query["details"],"Response": "True", "status": "request granted"}
+
     else:
         myInsertToMovie = {
             "movieID": content["movieID"],
@@ -259,13 +256,10 @@ def get_info():
         try:
             myCollection.insert_one(myInsertToMovie)
         except Exception as e:
-            print({"status": "Create fail maybe Duplicate username",
+            print({"status": "Create fail",
                   "Response": "False"})
         return {"result":response,"Response": "True", "status": "request granted"}
 
-
-    # print(query)
-    return {"result":query["details"],"Response": "True", "status": "request granted"}
 
 
 @app.route('/')

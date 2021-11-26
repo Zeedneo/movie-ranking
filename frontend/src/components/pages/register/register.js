@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import url from "../../url_file";
 
 
 
@@ -20,7 +21,7 @@ function Register() {
         if (password === rePassword) {
             setErrorAlert1(0);
             setErrorAlert2(0);
-            axios.post('http://f07e-223-24-92-42.ap.ngrok.io/register', {
+            axios.post(url+'register', {
                 username: username, password: password
             })
                 .then(function (response) {
