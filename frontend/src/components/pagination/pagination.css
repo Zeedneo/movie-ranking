@@ -1,0 +1,17 @@
+.page-link {
+    color: rgb(255, 255, 255);
+    background-color: #758fb3;
+    border: #758fb3;
+}
+
+.page-link:hover {
+    color: white;
+    background-color: #4d6a92;
+    border: #4d6a92;
+}
+
+.page-link:focus {
+    color: white;
+    background-color: #4d6a92;
+    border: #4d6a92;
+}

@@ -2,21 +2,23 @@ import login from '../login/login.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from 'bootstrap';
 
 
 function Login(props) {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorAlert, setErrorAlert] = useState(0);
 
     function SubmitLogin() {
         // console.log(username);
         // console.log(password);
 
-        axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/login', {
-            username: username , password: password
+        axios.post('http://f07e-223-24-92-42.ap.ngrok.io/login', {
+            username: username, password: password
         })
-            .then (function (response) {
+            .then(function (response) {
                 // console.log(response.data.Response);
                 // console.log(response.data.status);
                 // console.log(response.data.username);
@@ -24,6 +26,11 @@ function Login(props) {
                 if (response.data.Response === "True") {
                     props.user(response.data.username);
                     navigate(`../`, { replace: false })
+                    setErrorAlert(0);
+                }
+                if (response.data.Response === "False") {
+                    // console.log("ผิดค่ะ");
+                    setErrorAlert(1);
                 }
             })
     }
@@ -31,6 +38,13 @@ function Login(props) {
 
     return (
         <section className="vh-100">
+            {
+                errorAlert
+                    ? <div class="alert alert-warning" role="alert" data-mdb-color="warning">
+                        username or password is incorrect.
+                    </div>
+                    : <div></div>
+            }
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100 width-50">
                     <div className="col-md-9 col-lg-6 col-xl-5">
@@ -87,6 +101,7 @@ function Login(props) {
                 </div>
             </div>
         </section>
+
     );
 }
 export default Login;

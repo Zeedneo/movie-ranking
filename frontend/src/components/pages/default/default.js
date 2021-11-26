@@ -13,7 +13,7 @@ function Default(props) {
 
 
     const searchFuntion = async (key) => {
-        await axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/search', {
+        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/search', {
             search: key, page: props.page, type: props.typeMovie
         })
             .then(function (response) {
@@ -25,7 +25,7 @@ function Default(props) {
     }
 
     const AddToFav = async (value) => {
-        await axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/add2Favorite', {
+        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/add2Favorite', {
             username: props.Username, movieID: value
         })
             .then(function (response) {
@@ -45,7 +45,7 @@ function Default(props) {
             props.SearchKeyword(searchURLword);
             searchFuntion(searchURLword);
         }
-    }, [props.searchKey , props.page , props.typeMovie]);
+    }, [props.searchKey, props.page, props.typeMovie]);
 
 
     return (
@@ -66,7 +66,13 @@ function Default(props) {
                                             type="button"
                                             classname="card-buttonInfo"
                                             id="buttonInfo"
-                                            // onClick={() => { AddToFav(val.imdbID) }}
+                                            onClick={() => {
+                                                console.log("กด i");
+                                                props.totalOfPages(1);
+                                                props.state(0);
+                                                props.Idmovie(val.imdbID);
+                                                navigate(`../infoMovie`, { replace: false })
+                                            }}
                                         > <ImInfo /> </button>
                                         <button
                                             type="button"

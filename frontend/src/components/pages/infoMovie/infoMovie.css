@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Harmattan&family=Spectral+SC:wght@300;500&family=Zen+Loop&display=swap');
+
+.SpaceInfo {
+    padding-top: 5rem;
+}
+
+.cardInfo {
+    align-items: center;
+    font-family: 'Spectral SC', serif;
+    max-width: 50rem;
+    padding: 1.25rem;
+    margin: auto;
+    border-radius: 5px ;
+    border-color: transparent;
+    background-color: rgba(230, 230, 230, 0.61);
+}
+
+.cardInfoTitle-title {
+    margin-bottom: 1.25rem;
+}
+
+.cardInfoPlot-text {
+    margin-bottom: 1.25rem;
+}
+
+.cardInfoBody-body {
+    padding: 0 3rem;
+}
+
+.p {
+    margin-bottom: 0;
+}
+
+.text-muted {
+    padding: 0;
+}
+
+.cardInfoMuted-text {
+    margin: 0;
+}
+
+.rounded-start {
+    border-radius: 0.25rem;
+}
+
+.cardLastInfo, .buttonReturn {
+    display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;
+}
+
+#buttonReturn {
+    margin-right: 25rem;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 4px;
+    position:absolute;
+    right: 0;
+    background-color: rgb(150, 201, 248);
+    color: white;
+    border: transparent;
+}
+
+#buttonReturn:hover {
+    background-color: rgb(78, 131, 230);
+    color: white;
+}

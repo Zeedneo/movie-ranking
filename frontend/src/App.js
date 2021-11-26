@@ -7,6 +7,7 @@ import Login from './components/pages/login/login';
 import Register from './components/pages/register/register';
 import Favorites from './components/pages/favorites/favorites';
 import Pagination from './components/pagination/pagination';
+import InfoMovie from './components/pages/infoMovie/infoMovie';
 import React, { useState } from 'react';
 
 
@@ -18,6 +19,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [disable, setDisable] = useState(0);
+  const [infoID, setInfoID] = useState("");
+  const [infoState, setInfoState] = useState(0);
 
 
   const searchHandler = (searchTerm) => {
@@ -52,6 +55,15 @@ function App() {
     // console.log(currentPage, "CP");
   }
 
+  const set_ID = (Data) => {
+    setInfoID(Data);
+    // console.log(Data,"infoID");
+  }
+
+  const set_infoState = (Data) => {
+    setInfoState(Data);
+  }
+
   return (
     <div>
       <NavBar
@@ -64,7 +76,7 @@ function App() {
       <br />
       <br />
       <Routes>
-        <Route path="/:searchURLword/" element={<Default
+        <Route path="/:searchURLword" element={<Default
           key={searchTerm}
           searchKey={searchTerm}
           SearchKeyword={searchHandler}
@@ -72,6 +84,8 @@ function App() {
           totalOfPages={total_pages}
           page={currentPage}
           typeMovie={typeMovie}
+          Idmovie={set_ID}
+          state={set_infoState}
         // lenghtOfData={lenghtOfData}
         // currentPosts={currentPosts}
         />} />
@@ -83,6 +97,8 @@ function App() {
           totalOfPages={total_pages}
           page={currentPage}
           typeMovie={typeMovie}
+          Idmovie={set_ID}
+          state={set_infoState}
         // lenghtOfData={lenghtOfData}
         // currentPosts={currentPosts}
         />} />
@@ -94,15 +110,16 @@ function App() {
           totalOfPages={total_pages}
           page={currentPage}
           typeMovie={typeMovie}
+          Idmovie={set_ID}
+          state={set_infoState}
         // lenghtOfData={lenghtOfData}
         // currentPosts={currentPosts}
         />} />
         <Route path="/login" element={<Login user={user} />} />
-        <Route path="/favorites" element={<Favorites Username={name} totalOfPages={total_pages} />} />
+        <Route path="/favorites" element={<Favorites Username={name} totalOfPages={total_pages} Idmovie={set_ID} state={set_infoState}/>} />
         <Route path="/register" element={<Register />} />
+        <Route path="/infoMovie" element={<InfoMovie ID={infoID} state={infoState} search={searchTerm} totalOfPages={total_pages}/>} />
       </Routes>
-      <br />
-      <br />
       <br />
       <Pagination totalPages={totalPages} page={current_page} currentPage={currentPage} disable={disable}/>
     </div>

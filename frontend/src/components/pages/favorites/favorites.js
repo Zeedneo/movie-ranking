@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { BiBookHeart } from "react-icons/bi";
 import { ImInfo } from "react-icons/im";
 import { FaHeartBroken } from "react-icons/fa";
@@ -7,15 +8,15 @@ import favorites from "../favorites/favorites.css"
 
 
 function Favorites(props) {
+    const navigate = useNavigate();
     const [type, setType] = useState("");
     const [data, setData] = useState([]);
     const [click, setClick] = useState(0);
     const [re, setRe] = useState(1);
-    const [infoId, setInfoId] = useState("");
-    const [nowId, setNowId] = useState(0);
+
 
     const removeFavorite = async (value) => {
-        await axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/removeFavorite', {
+        await axios.post('http://f07e-223-24-92-42.ap.ngrok.io/removeFavorite', {
             username: props.Username, movieID: value
         })
             .then(function (response) {
@@ -26,18 +27,9 @@ function Favorites(props) {
             })
     }
 
-    const checkInfo = (Id) => {
-        setInfoId(Id);
-    }
-
-    const checkshow = (Id) => {
-        if (infoId === Id) {
-            setNowId(1);
-        }
-    }
 
     useEffect(() => {
-        axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/showFavorite', {
+        axios.post('http://f07e-223-24-92-42.ap.ngrok.io/showFavorite', {
             username: props.Username, type: type
         })
             .then(function (response) {
@@ -47,10 +39,11 @@ function Favorites(props) {
                 // console.log(response.data.username)
                 // console.log(response.data.favorite)
                 setData(response.data.favorite);
-                console.log(response.data);
+                console.log(response.data.favorite);
                 props.totalOfPages(1);
+                props.state(1);
             })
-    }, [click , re , type]);
+    }, [click, re, type]);
 
 
     return (
@@ -75,12 +68,12 @@ function Favorites(props) {
                 {data
                     .map((val, key) => {
                         return (
-                            // {
-                            //     nowId
-                            //     ? <div></div>
-                            //     :
-                            // }
                             <div class="card">
+                                {/* {
+                                    val.imdbID
+                                    ? <div>ใช่</div>
+                                    : <div>ไม่</div>
+                                } */}
                                 <div class="card-body">
                                     <img class="card-img-top" src={val.Poster} alt="..." />
                                     <h4 classname="card-title"> {val.Title}</h4>
@@ -92,7 +85,11 @@ function Favorites(props) {
                                             type="button"
                                             classname="card-buttonInfo"
                                             id="buttonInfo"
-                                        // onClick={() => { AddToFav(val.imdbID) }}
+                                            onClick={() => {
+                                                console.log("กด i");
+                                                props.Idmovie(val.imdbID);
+                                                navigate(`../infoMovie`, { replace: false })
+                                            }}
                                         > <ImInfo /> </button>
                                         <button
                                             type="button"

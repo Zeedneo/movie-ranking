@@ -9,13 +9,18 @@ function Register() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
+    const [errorAlert1, setErrorAlert1] = useState(0);
+    const [errorAlert2, setErrorAlert2] = useState(0);
+
 
 
     function SubmitRegister() {
         // console.log("กดแล้ว");
 
         if (password === rePassword) {
-            axios.post('http://f5c2-2001-fb1-0-703d-8029-4526-d6e8-6764.ap.ngrok.io/register', {
+            setErrorAlert1(0);
+            setErrorAlert2(0);
+            axios.post('http://f07e-223-24-92-42.ap.ngrok.io/register', {
                 username: username, password: password
             })
                 .then(function (response) {
@@ -25,21 +30,38 @@ function Register() {
                     if (response.data.Response === "True") {
                         navigate(`../login`, { replace: false })
                     }
+                    if (response.data.Response === "False") {
+                        setErrorAlert2(1);
+                    }
                 })
         }
         else {
-            // console.log("password!=rePassword");
+            setErrorAlert1(1);
         }
     }
 
 
     return (
-        <section className="vh-0" style={{ backgroundColor: "#eee" }}>
+        <section className="vh-0">
+            {
+                errorAlert1
+                    ? <div class="alert alert-warning" role="alert" data-mdb-color="warning">
+                        Your password and confirmation password do not match.
+                    </div>
+                    : <div></div>
+            }
+            {
+                errorAlert2
+                    ? <div class="alert alert-warning" role="alert" data-mdb-color="warning">
+                        That username has been taken.
+                    </div>
+                    : <div></div>
+            }
             <div className="container h-10">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-10 col-xl-12">
-                        <div className="card text-black" style={{ borderRadius: "25px" }}>
-                            <div className="card-body p-md-12">
+                        <div className="cardRe text-black" style={{ borderRadius: "25px" }}>
+                            <div className="cardRe-body p-md-12">
                                 <div className="row justify-content-center">
                                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 

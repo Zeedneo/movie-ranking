@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Harmattan&display=swap');
 
 .bg {
-    background-color: #506D84;
+    background-color: #5b79a3;
 }
 
 .navbar-brand {
@@ -16,13 +16,7 @@
     font-family: 'Harmattan', sans-serif;
     font-size: 1.5rem;
     padding-left: 2rem;
-    /* padding-right: 2rem; */
 }
-
-/* .nav-link.active {
-    padding-left: 10rem;
-    padding-right: 5rem;
-} */
 
 .container-fluid {
     padding-left: 10rem;
@@ -30,17 +24,16 @@
 }
 
 .btn-secondary {
-    background-color: #ffac7c;
-    border-color: #ffac7c;
+    background-color: #f59da0;
+    border-color: #f59da0;
 }
 
 .btn-secondary:hover {
-    background-color: #f58458;
-    border-color: #f58458;
-    /* color: #db936a; */
+    background-color: #ff7c80;
+    border-color: #ff7c80;
 }
 
 .btn-secondary:focus {
-    background-color: #f58458;
-    border-color: #f58458;
+    background-color: #ff7c80;
+    border-color: #ff7c80;
 }
