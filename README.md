@@ -12,4 +12,4 @@
 ด้วยเวลากระชั้นชิด แม้ว่าสุดท้ายจะไม่สามารถทำทุกอย่างเสร็จ 100% ได้ แต่ก็สามารถพัฒนาและเรียนรู้จนเกินจุดที่น่าพึงพอใจแล้ว
 
 ## ตัวอย่างหน้าตาเว็บ
-<img width="1198" alt="Screen Shot 2564-11-27 at 17 48 40" src="https://user-images.githubusercontent.com/61343596/143678206-94efff66-084e-49b5-a0a5-abc65ea42ec0.png">
+<img width="1195" alt="Screen Shot 2564-11-27 at 21 06 06" src="https://user-images.githubusercontent.com/61343596/143684824-73a0c358-549b-4a12-bc98-1e4c3a7e034d.png">
