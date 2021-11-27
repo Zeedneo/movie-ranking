@@ -51,12 +51,13 @@ function NavBar(props) {
 
                     <ul className="navbar-nav ms-10 mb-2 mb-md-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/favorites">
+                            <Link 
+                            className="nav-link favorite active" aria-current="page" to="/favorites">
                                 <RiHeartsFill /> Favorites
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/login">
+                            <Link className="nav-link login active" aria-current="page" to="/login">
                                 <IoLogInOutline /> Login
                             </Link>
                         </li>

@@ -50,7 +50,7 @@ function Pagination(props) {
                             <li class="page-item"><Link class="page-link" to="/" onClick={() => {
                                 props.page(Number);
                                 navigate(`../num`);
-                                console.log("กด");
+                                // console.log("กด");
                             }
 
                             }>{Number}</Link></li>

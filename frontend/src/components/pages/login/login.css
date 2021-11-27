@@ -21,11 +21,16 @@
 }
 
 .btn-primary {
-  background-color: rgb(255, 180, 95);
-  border-color: rgb(255, 180, 95);
+  background-color: #f59da0;
+  border-color: #f59da0;
 }
 
 .btn-primary:hover {
-  background-color: rgb(233, 142, 38);
-  border-color: rgb(233, 142, 38);
+  background-color: #ff7c80;
+  border-color: #ff7c80;
+}
+
+.col-md-9 ,.col-md-8{
+  padding-right: 0;
+  padding-left: 0;
 }

@@ -75,3 +75,13 @@
     border-color: rgb(255, 182, 87);
     color: white;
 }
+
+.drop-fav {
+    background-color: rgb(255, 252, 238);
+    border-color: rgb(255, 252, 238);
+}
+
+.drop-fav:hover {
+    background-color: rgb(255, 207, 145);
+    border-color: rgb(255, 207, 145);
+}

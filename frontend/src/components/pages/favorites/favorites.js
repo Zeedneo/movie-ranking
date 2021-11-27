@@ -13,38 +13,37 @@ function Favorites(props) {
     const [type, setType] = useState("");
     const [data, setData] = useState([]);
     const [click, setClick] = useState(0);
-    const [re, setRe] = useState(1);
+    const [idRemove, setIdRemove] = useState("1");
+
 
 
     const removeFavorite = async (value) => {
-        await axios.post(url+'removeFavorite', {
+        await axios.post(url + 'removeFavorite', {
             username: props.Username, movieID: value
         })
             .then(function (response) {
-                setRe(0);
-                console.log(response.data.Response);
-                console.log(response.data.status);
-                console.log(response.data);
+                // console.log(response.data.Response);
+                // console.log(response.data.status);
+                // console.log(response.data);
             })
     }
 
-
     useEffect(() => {
-        axios.post(url+'showFavorite', {
+        axios.post(url + 'showFavorite', {
             username: props.Username, type: type
         })
             .then(function (response) {
-                // console.log("กด");
+                console.log("กด");
                 // console.log(response.data.Response)
                 // console.log(response.data.status)
                 // console.log(response.data.username)
                 // console.log(response.data.favorite)
                 setData(response.data.favorite);
-                console.log(response.data.favorite);
+                // console.log(response.data.favorite);
                 props.totalOfPages(1);
                 props.state(1);
             })
-    }, [click, re, type]);
+    }, [click, type, idRemove]);
 
 
     return (
@@ -57,10 +56,10 @@ function Favorites(props) {
                             Type
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#" onClick={() => setType("")}>all</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={() => setType("movie")}>movie</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={() => setType("series")}>series</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={() => setType("game")}>game</a></li>
+                            <li><a class="dropdown-item drop-fav" href="#" onClick={() => setType("")}>all</a></li>
+                            <li><a class="dropdown-item drop-fav" href="#" onClick={() => setType("movie")}>movie</a></li>
+                            <li><a class="dropdown-item drop-fav" href="#" onClick={() => setType("series")}>series</a></li>
+                            <li><a class="dropdown-item drop-fav" href="#" onClick={() => setType("game")}>game</a></li>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +86,7 @@ function Favorites(props) {
                                             classname="card-buttonInfo"
                                             id="buttonInfo"
                                             onClick={() => {
-                                                console.log("กด i");
+                                                // console.log("กด i");
                                                 props.Idmovie(val.imdbID);
                                                 navigate(`../infoMovie`, { replace: false })
                                             }}
@@ -96,7 +95,10 @@ function Favorites(props) {
                                             type="button"
                                             classname="card-buttonUnFav"
                                             id="buttonUnFav"
-                                            onClick={() => { removeFavorite(val.imdbID) }}
+                                            onClick={() => {
+                                                removeFavorite(val.imdbID);
+                                                setIdRemove(val.imdbID);
+                                            }}
                                         > <FaHeartBroken /> </button>
                                     </div>
                                 </div>

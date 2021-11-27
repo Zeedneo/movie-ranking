@@ -16,7 +16,7 @@ function Login(props) {
         // console.log(username);
         // console.log(password);
 
-        axios.post(url+'login', {
+        axios.post(url + 'login', {
             username: username, password: password
         })
             .then(function (response) {
@@ -49,18 +49,19 @@ function Login(props) {
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100 width-50">
                     <div className="col-md-9 col-lg-6 col-xl-5">
-                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" className="img-fluid"
+                        <img src="MovieRank.PNG" className="img-fluid"
                             alt="Sample image" />
                     </div>
                     <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form>
+                            <p className="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4">Login</p>
                             {/* <!-- Email input --> */}
                             <div className="form-outline mb-4">
                                 <input
                                     type="email"
                                     id="form3Example3"
                                     className="form-control form-control-lg"
-                                    placeholder="Enter a valid email address"
+                                    placeholder="Enter username"
                                     onChange={event => {
                                         // console.log("Username", event.target.value);
                                         setUsername(event.target.value);

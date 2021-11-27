@@ -68,7 +68,7 @@ function Default(props) {
                                             classname="card-buttonInfo"
                                             id="buttonInfo"
                                             onClick={() => {
-                                                console.log("กด i");
+                                                // console.log("กด i");
                                                 props.totalOfPages(1);
                                                 props.state(0);
                                                 props.Idmovie(val.imdbID);

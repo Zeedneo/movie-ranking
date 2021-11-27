@@ -1,0 +1,24 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: 40rem
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+.col-md-10 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.block-left {
+    padding-left: 10rem;
+}
