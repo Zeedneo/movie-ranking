@@ -4,54 +4,16 @@ from flask_cors import CORS, cross_origin
 from flask_pymongo import PyMongo
 import json
 import requests
+from api import * 
+# this api.py is currenly hidden, it contain url and api-key form rapidapi
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/movie'
 mongo = PyMongo(app)
 
-url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
-headers = {
-            'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
-            'x-rapidapi-key': "597636a391msh9897a4405dd30c5p1531d6jsnf1680b5c1fd8"
-        }
 
-# @app.route('/search', methods=['POST', 'GET'])
-# @cross_origin()
-# def search_movie():
-#     result = {}
-#     content = request.get_json()
-#     current_page = 1
-#     filType = ""
-#     print("content here ", content)
-#     if content == None or "search" not in content or content["search"] == "":
-#         result = {
-#             "totalPages": 0,
-#             "search": [],
-#             "status": "True"
-#         }
-#         return result
-#     if "page" in content:
-#         current_page = content["page"]
-#     if "type" in content:
-#         filType = content["type"]
-#     url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
-#     querystring = {"s": content["search"], "r": "json", "page": current_page, "type":filType}
-#     headers = {
-#         'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
-#         'x-rapidapi-key': "597636a391msh9897a4405dd30c5p1531d6jsnf1680b5c1fd8"
-#     }
 
-#     response = requests.request("GET", url, headers=headers, params=querystring)
-#     response = json.loads(response.text)
-#     if response["Response"] == "False":
-#         return {"status": "False", "Error": "Please fill search parameter or page parameter out of range.", "search": [], "totalPages": "0"}
-
-#     result["totalPages"] = -(int(response["totalResults"]) // -10)
-#     result["search"] = response["Search"]
-#     result["status"] = "True"
-#     result["page"] = current_page
-#     return result
 
 
 @app.route('/search', methods=['POST', 'GET'])
@@ -73,23 +35,22 @@ def search_movie2():
         }
         return result
     if "page" in content:
-        i_max=int(content["page"])*6
-        i_min = i_max - 5
+        i_max=int(content["page"])*9 -1
+        i_min = i_max - 8
         max_page = ( i_max)//10 + 1
         min_page = ( i_min )//10 + 1
     if "type" in content:
         filType = content["type"]
     res = []
-
     if min_page == max_page:
         querystring = {"s": content["search"], "r": "json", "page": min_page, "type":filType}
         response = requests.request("GET", url, headers=headers, params=querystring)
         response = json.loads(response.text)
         if response["Response"] == "False":
             return {"status": "False", "Error": "Please fill search parameter or page parameter out of range.", "search": [], "totalPages": "0"}
-        for i in response["Search"][ (i_min-1)%10: (i_max)%10]:
+        for i in response["Search"][ (i_min)%10: (i_max+1)%10]:
             res.append(i)
-        result["totalPages"] = -(int(response["totalResults"]) // -6)
+        result["totalPages"] = -(int(response["totalResults"]) // -9)
     else:
         querystring1 = {"s": content["search"], "r": "json", "page": min_page, "type":filType}
         querystring2 = {"s": content["search"], "r": "json", "page": max_page, "type":filType}
@@ -99,11 +60,11 @@ def search_movie2():
         response2 = json.loads(response2.text)
         if response2["Response"] == "False":
             return {"status": "False", "Error": "Please fill search parameter or page parameter out of range.", "search": [], "totalPages": "0"}
-        for i in response1["Search"][ (i_min-1)%10:]:
+        for i in response1["Search"][ (i_min)%10:]:
             res.append(i)
-        for i in response2["Search"][ :(i_max)%10]:
+        for i in response2["Search"][ :(i_max+1)%10]:
             res.append(i)  
-        result["totalPages"] = -(int(response1["totalResults"]) // -6)
+        result["totalPages"] = -(int(response1["totalResults"]) // -9)
 
     result["search"] = res
     result["status"] = "True"
